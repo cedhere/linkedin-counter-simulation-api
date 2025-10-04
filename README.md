@@ -19,7 +19,7 @@ Basically, this project was my crash course in containerization + orchestration
 ---
 
 ### Home Screen 
- 
+
 
 ---
 
