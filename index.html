@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pseudo LinkedIn Connection Counter</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f3f6f9;
+      color: #333;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h2 {
+      color: #0077b5;
+      margin-bottom: 10px;
+    }
+
+    p {
+      max-width: 600px;
+      margin: 0 auto 10px;
+      line-height: 1.5;
+    }
+
+    hr {
+      margin: 30px auto;
+      border: 0;
+      height: 1px;
+      background: #ddd;
+      width: 60%;
+    }
+
+    input {
+      padding: 10px;
+      width: 250px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+      margin-right: 8px;
+    }
+
+    button {
+      background-color: #0077b5;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      font-size: 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #005f86;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #222;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Welcome message -->
+  <h2>Welcome to the pseudo-LinkedIn connections retriever API</h2>
+  <p>Please note that this is just a simulation, and real connection numbers are <strong>NOT</strong> being displayed.</p>
+  <p>This is not affiliated with LinkedIn in any way</p>
+  <p>Just a fun way to use the random function 🙂</p>
+
+  <hr>
+
+  <!-- App UI -->
+  <h3>Type a name to simulate their connection count:</h3>
+
+  <input id="username" type="text" placeholder="Enter a name">
+  <button onclick="getConnections()">Show Connections</button>
+
+  <h3 id="result"></h3>
+
+  <script>
+    async function getConnections() {
+      const user = document.getElementById("username").value;
+      if (!user) {
+        document.getElementById("result").innerText = "⚠️ Please enter a name!";
+        return;
+      }
+
+      try {
+        const response = await fetch(`/connections/${user}`);
+        const data = await response.json();
+        document.getElementById("result").innerText =
+          `${data.user} has ${data.connections} connections 🎉`;
+      } catch (err) {
+        document.getElementById("result").innerText = "Error fetching data";
+      }
+    }
+  </script>
+</body>
+</html>
